@@ -1,0 +1,97 @@
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+!.mvn/wrapper/maven-wrapper.jar
+
+
+.idea/
+*.iml
+*.iws
+*.ipr
+
+
+.classpath
+.project
+.settings/
+
+.vscode/
+
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+*.log
+logs/
+
+
+.env
+.env.*
+!.env.example
+
+
+application-local.properties
+application-local.yml
+application-local.yaml
+
+
+spring-boot-devtools.properties
+
+
+docker-compose.override.yml
+
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Terraform plan files
+*.tfplan
+*.tfplan.json
+
+# Terraform lock file
+# Keep this file committed for reproducible provider versions
+# .terraform.lock.hcl
+
+# Terraform working directory
+.terraform/
+
+# Variable files containing secrets
+*.tfvars
+*.tfvars.json
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration
+.terraformrc
+terraform.rc
+
+# Local environment / secrets
+.env
+.env.*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
