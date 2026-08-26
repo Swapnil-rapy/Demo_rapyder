@@ -35,9 +35,11 @@ jobs:
           cache: maven
 
       - name: Run Maven tests
+        working-directory: ./application
         run: mvn clean test
 
       - name: Build application
+        working-directory: ./application
         run: mvn clean package -DskipTests
 
 
@@ -73,6 +75,7 @@ jobs:
 
 
       - name: Build Docker image
+        working-directory: ./application
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
