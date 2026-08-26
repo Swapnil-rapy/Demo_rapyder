@@ -116,7 +116,7 @@ jobs:
       - name: Checkout GitOps repository
         uses: actions/checkout@v4
         with:
-          repository: YOUR_GITHUB_USERNAME/demo-project-gitops
+          repository: swapnil-rapy/gitops_repo
           token: ${{ secrets.GITOPS_REPO_TOKEN }}
           path: gitops
 
