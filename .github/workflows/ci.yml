@@ -63,7 +63,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.SECRET_aKEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Verify AWS identity
@@ -130,8 +130,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
 
         run: |
-          sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" helm/sample-app/values.yaml
-
+          sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" helm_charts/values.yaml
 
       - name: Commit and push GitOps change
         working-directory: gitops
