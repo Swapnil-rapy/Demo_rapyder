@@ -122,7 +122,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
 
         run: |
-          sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" .values.yaml
+          sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" values.yaml
 
       - name: Commit and push GitOps change
         working-directory: ./gitops
