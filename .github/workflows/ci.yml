@@ -117,15 +117,15 @@ jobs:
 
 
       - name: Update image tag
-        working-directory: .
+        working-directory: helm_charts
         env:
           IMAGE_TAG: ${{ github.sha }}
 
         run: |
-          sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" helm_charts/values.yaml
+          sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" .values.yaml
 
       - name: Commit and push GitOps change
-        working-directory: .
+        working-directory: helm_charts
         env:
           IMAGE_TAG: ${{ github.sha }}
 
@@ -133,7 +133,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add helm_charts/values.yaml
+          git add values.yaml
 
           git diff --cached --quiet || git commit \
             -m "Update sample-app image to $IMAGE_TAG"
