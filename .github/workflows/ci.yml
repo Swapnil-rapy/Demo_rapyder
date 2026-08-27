@@ -111,13 +111,13 @@ jobs:
       - name: Checkout GitOps repository
         uses: actions/checkout@v4
         with:
-          repository: Gitops-repo
+          repository: swapnil-rapy/Gitops-repo
           token: ${{ secrets.GITOPS_REPO_TOKEN }}
           path: gitops
 
 
       - name: Update image tag
-        working-directory: Gitops-repo/helm_charts/
+        working-directory: helm_charts
         env:
           IMAGE_TAG: ${{ github.sha }}
 
@@ -125,7 +125,7 @@ jobs:
           sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" values.yaml
 
       - name: Commit and push GitOps change
-        working-directory: Gitops-repo/helm_charts/
+        working-directory: helm_charts
         env:
           IMAGE_TAG: ${{ github.sha }}
 
