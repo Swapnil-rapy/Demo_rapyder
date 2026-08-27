@@ -138,4 +138,4 @@ jobs:
           git diff --cached --quiet || git commit \
             -m "Update sample-app image to $IMAGE_TAG"
 
-          git push
+          git push 
