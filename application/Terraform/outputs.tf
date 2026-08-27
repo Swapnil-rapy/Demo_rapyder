@@ -3,40 +3,19 @@ output "vpc_id" {
   value       = module.vpc.vpc_id
 }
 
-
-output "public_subnet_a_id" {
-  description = "Public subnet A ID"
-  value       = module.vpc.public_subnet_a_id
+output "public_subnet_ids" {
+  description = "Public subnet IDs"
+  value       = module.vpc.public_subnet_ids
 }
 
-
-output "public_subnet_b_id" {
-  description = "Public subnet B ID"
-  value       = module.vpc.public_subnet_b_id
+output "private_subnet_ids" {
+  description = "Private subnet IDs"
+  value       = module.vpc.private_subnet_ids
 }
 
-
-output "public_subnet_c_id" {
-  description = "Public subnet C ID"
-  value       = module.vpc.public_subnet_c_id
-}
-
-
-output "private_subnet_a_id" {
-  description = "Private subnet A ID"
-  value       = module.vpc.private_subnet_a_id
-}
-
-
-output "private_subnet_b_id" {
-  description = "Private subnet B ID"
-  value       = module.vpc.private_subnet_b_id
-}
-
-
-output "private_subnet_c_id" {
-  description = "Private subnet C ID"
-  value       = module.vpc.private_subnet_c_id
+output "nat_gateway_id" {
+  description = "NAT Gateway ID"
+  value       = module.vpc.nat_gateway_id
 }
 
 
@@ -47,7 +26,7 @@ output "eks_cluster_name" {
 
 
 output "eks_cluster_endpoint" {
-  description = "EKS cluster endpoint"
+  description = "EKS API endpoint"
   value       = module.eks.cluster_endpoint
 }
 

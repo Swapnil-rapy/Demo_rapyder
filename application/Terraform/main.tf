@@ -1,19 +1,17 @@
-
-
 module "vpc" {
   source = "./modules/vpc"
 
-  project_name = var.project_name
-
-  environment = var.environment
+  name = var.vpc_name
 
   vpc_cidr = var.vpc_cidr
 
-  az_a = var.availability_zone_a
+  availability_zones = var.availability_zones
 
-  az_b = var.availability_zone_b
+  public_subnet_cidrs = var.public_subnet_cidrs
 
-  az_c = var.availability_zone_c
+  private_subnet_cidrs = var.private_subnet_cidrs
+
+  tags = var.tags
 }
 
 
@@ -26,11 +24,8 @@ module "eks" {
 
   vpc_id = module.vpc.vpc_id
 
-  private_subnet_a_id = module.vpc.private_subnet_a_id
+  subnet_ids = module.vpc.private_subnet_ids
 
-  private_subnet_b_id = module.vpc.private_subnet_b_id
-
-  private_subnet_c_id = module.vpc.private_subnet_c_id
 }
 
 

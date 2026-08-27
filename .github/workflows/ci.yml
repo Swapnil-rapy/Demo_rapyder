@@ -117,7 +117,7 @@ jobs:
 
 
       - name: Update image tag
-        working-directory: ./Gitops-repo/helm_charts
+        working-directory: ./Gitops-repo/helm_charts/my-app
         env:
           IMAGE_TAG: ${{ github.sha }}
 
@@ -125,7 +125,7 @@ jobs:
           sed -i "s/tag: .*/tag: \"$IMAGE_TAG\"/" values.yaml
 
       - name: Commit and push GitOps change
-        working-directory: ./Gitops-repo/helm_charts
+        working-directory: ./Gitops-repo/helm_charts/my-app
         env:
           IMAGE_TAG: ${{ github.sha }}
 

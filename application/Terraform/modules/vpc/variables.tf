@@ -1,29 +1,30 @@
-variable "project_name" {
-  description = "Project name"
-  type        = string
-}
-
-variable "environment" {
-  description = "Environment name"
+variable "name" {
+  description = "Name of the VPC"
   type        = string
 }
 
 variable "vpc_cidr" {
-  description = "CIDR block for VPC"
+  description = "CIDR block for the VPC"
   type        = string
 }
 
-variable "az_a" {
-  description = "Availability Zone A"
-  type        = string
+variable "availability_zones" {
+  description = "Availability zones"
+  type        = list(string)
 }
 
-variable "az_b" {
-  description = "Availability Zone B"
-  type        = string
+variable "public_subnet_cidrs" {
+  description = "CIDR blocks for public subnets"
+  type        = list(string)
 }
 
-variable "az_c" {
-  description = "Availability Zone C"
-  type        = string
+variable "private_subnet_cidrs" {
+  description = "CIDR blocks for private subnets"
+  type        = list(string)
+}
+
+variable "tags" {
+  description = "Common tags"
+  type        = map(string)
+  default     = {}
 }

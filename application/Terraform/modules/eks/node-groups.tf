@@ -1,7 +1,3 @@
-# -------------------------
-# Node IAM Role
-# -------------------------
-
 resource "aws_iam_role" "node_role" {
   name = "${var.cluster_name}-node-role"
 
@@ -50,10 +46,6 @@ resource "aws_iam_role_policy_attachment" "cni_policy" {
 }
 
 
-# -------------------------
-# Managed Node Group
-# -------------------------
-
 resource "aws_eks_node_group" "main" {
   cluster_name = aws_eks_cluster.main.name
 
@@ -61,11 +53,7 @@ resource "aws_eks_node_group" "main" {
 
   node_role_arn = aws_iam_role.node_role.arn
 
-  subnet_ids = [
-    var.private_subnet_a_id,
-    var.private_subnet_b_id,
-    var.private_subnet_c_id
-  ]
+  subnet_ids = var.subnet_ids
 
   instance_types = [
     "t3.medium"
@@ -86,6 +74,7 @@ resource "aws_eks_node_group" "main" {
   update_config {
     max_unavailable = 1
   }
+  
 
   labels = {
     environment = "sample"

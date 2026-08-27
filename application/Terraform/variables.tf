@@ -19,31 +19,35 @@ variable "environment" {
 }
 
 
+variable "vpc_name" {
+  type        = string
+  description = "VPC name"
+}
+
 variable "vpc_cidr" {
-  description = "CIDR block for the VPC"
   type        = string
-  default     = "10.0.0.0/16"
+  description = "VPC CIDR"
 }
 
-
-variable "availability_zone_a" {
-  description = "First Availability Zone"
-  type        = string
-  default     = "ap-south-1a"
+variable "availability_zones" {
+  type        = list(string)
+  description = "Availability zones"
 }
 
-
-variable "availability_zone_b" {
-  description = "Second Availability Zone"
-  type        = string
-  default     = "ap-south-1b"
+variable "public_subnet_cidrs" {
+  type        = list(string)
+  description = "Public subnet CIDRs"
 }
 
+variable "private_subnet_cidrs" {
+  type        = list(string)
+  description = "Private subnet CIDRs"
+}
 
-variable "availability_zone_c" {
-  description = "Third Availability Zone"
-  type        = string
-  default     = "ap-south-1c"
+variable "tags" {
+  type        = map(string)
+  description = "Common resource tags"
+  default     = {}
 }
 
 
@@ -57,7 +61,7 @@ variable "eks_cluster_name" {
 variable "kubernetes_version" {
   description = "Kubernetes version for EKS"
   type        = string
-  default     = "1.33"
+  default     = "1.35"
 }
 
 variable "ecr_repository_name" {
