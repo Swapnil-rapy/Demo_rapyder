@@ -4,13 +4,19 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'application/**'
+      - '.github/workflows/ci.yml'
 
   pull_request:
     branches:
       - main
+    paths:
+      - 'application/**'
+      - '.github/workflows/ci.yml'  
 
 permissions:
-  contents: read
+  contents: read 
 
 env:
   AWS_REGION: ap-south-1
