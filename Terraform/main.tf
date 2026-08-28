@@ -42,3 +42,4 @@ module "argocd" {
   namespace     = "argocd"
   chart_version = "9.1.6"
 }
+
