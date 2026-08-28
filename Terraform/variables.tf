@@ -18,7 +18,7 @@ variable "environment" {
   default     = "dev"
 }
 
-
+/*
 variable "vpc_name" {
   type        = string
   description = "VPC name"
@@ -42,6 +42,16 @@ variable "public_subnet_cidrs" {
 variable "private_subnet_cidrs" {
   type        = list(string)
   description = "Private subnet CIDRs"
+}
+*/
+
+variable "vpcs" {
+  type = map(object({
+    cidr            = string
+    public_subnets  = list(string)
+    private_subnets = list(string)
+    availability_zones = list(string)
+  }))
 }
 
 variable "tags" {

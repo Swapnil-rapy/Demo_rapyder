@@ -1,47 +1,42 @@
 output "vpc_id" {
   description = "VPC ID"
-  value       = module.vpc.vpc_id
+  value       = module.vpc["sample"].vpc_id
 }
 
 output "public_subnet_ids" {
   description = "Public subnet IDs"
-  value       = module.vpc.public_subnet_ids
+  value       = module.vpc["sample"].public_subnet_ids
 }
 
 output "private_subnet_ids" {
   description = "Private subnet IDs"
-  value       = module.vpc.private_subnet_ids
+  value       = module.vpc["sample"].private_subnet_ids
 }
 
 output "nat_gateway_id" {
   description = "NAT Gateway ID"
-  value       = module.vpc.nat_gateway_id
+  value       = module.vpc["sample"].nat_gateway_id
 }
-
 
 output "eks_cluster_name" {
   description = "EKS cluster name"
   value       = module.eks.cluster_name
 }
 
-
 output "eks_cluster_endpoint" {
   description = "EKS API endpoint"
   value       = module.eks.cluster_endpoint
 }
-
 
 output "eks_cluster_arn" {
   description = "EKS cluster ARN"
   value       = module.eks.cluster_arn
 }
 
-
 output "eks_node_group_name" {
   description = "EKS managed node group name"
   value       = module.eks.node_group_name
 }
-
 
 output "ecr_repository_name" {
   description = "ECR repository name"
@@ -57,7 +52,6 @@ output "ecr_repository_arn" {
   description = "ECR repository ARN"
   value       = module.ecr.repository_arn
 }
-
 
 output "argocd_namespace" {
   description = "ArgoCD namespace"

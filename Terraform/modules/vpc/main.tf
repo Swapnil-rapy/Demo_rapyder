@@ -8,14 +8,11 @@ resource "aws_vpc" "main" {
   tags = merge(
     var.tags,
     {
-      Name = var.name
+      Name = var.vpc_name
     }
   )
 }
 
-# -------------------------
-# Internet Gateway
-# -------------------------
 
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.main.id
@@ -23,14 +20,11 @@ resource "aws_internet_gateway" "this" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.name}-igw"
+      Name = "${var.vpc_name}-igw"
     }
   )
 }
 
-# -------------------------
-# Public Subnets
-# -------------------------
 
 resource "aws_subnet" "public" {
   count = length(var.public_subnet_cidrs)
@@ -43,15 +37,12 @@ resource "aws_subnet" "public" {
   tags = merge(
     var.tags,
     {
-      Name                     = "${var.name}-public-${count.index + 1}"
+      Name                     = "${var.vpc_name}-public-${count.index + 1}"
       "kubernetes.io/role/elb" = "1"
     }
   )
 }
 
-# -------------------------
-# Private Subnets
-# -------------------------
 
 resource "aws_subnet" "private" {
   count = length(var.private_subnet_cidrs)
@@ -63,15 +54,12 @@ resource "aws_subnet" "private" {
   tags = merge(
     var.tags,
     {
-      Name                              = "${var.name}-private-${count.index + 1}"
+      Name                              = "${var.vpc_name}-private-${count.index + 1}"
       "kubernetes.io/role/internal-elb" = "1"
     }
   )
 }
 
-# -------------------------
-# Public Route Table
-# -------------------------
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
@@ -84,7 +72,7 @@ resource "aws_route_table" "public" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.name}-public-rt"
+      Name = "${var.vpc_name}-public-rt"
     }
   )
 }
@@ -96,9 +84,6 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
-# -------------------------
-# Elastic IP for NAT
-# -------------------------
 
 resource "aws_eip" "nat" {
   domain = "vpc"
@@ -106,14 +91,11 @@ resource "aws_eip" "nat" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.name}-nat-eip"
+      Name = "${var.vpc_name}-nat-eip"
     }
   )
 }
 
-# -------------------------
-# SINGLE NAT Gateway
-# -------------------------
 
 resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.nat.id
@@ -126,14 +108,11 @@ resource "aws_nat_gateway" "this" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.name}-nat"
+      Name = "${var.vpc_name}-nat"
     }
   )
 }
 
-# -------------------------
-# Private Route Table
-# -------------------------
 
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
@@ -146,7 +125,7 @@ resource "aws_route_table" "private" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.name}-private-rt"
+      Name = "${var.vpc_name}-private-rt"
     }
   )
 }

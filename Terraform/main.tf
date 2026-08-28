@@ -1,3 +1,4 @@
+/* 
 module "vpc" {
   source = "./modules/vpc"
 
@@ -12,6 +13,20 @@ module "vpc" {
   private_subnet_cidrs = var.private_subnet_cidrs
 
   tags = var.tags
+} 
+*/
+
+module "vpc" {
+  source = "./modules/vpc"
+
+  for_each = var.vpcs
+
+  vpc_name             = each.key
+  vpc_cidr             = each.value.cidr
+  public_subnet_cidrs  = each.value.public_subnets
+  private_subnet_cidrs = each.value.private_subnets
+  availability_zones = each.value.availability_zones
+  
 }
 
 
@@ -22,9 +37,9 @@ module "eks" {
 
   kubernetes_version = var.kubernetes_version
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.vpc["sample"].vpc_id
 
-  subnet_ids = module.vpc.private_subnet_ids
+  subnet_ids = module.vpc["sample"].private_subnet_ids
 
 }
 
