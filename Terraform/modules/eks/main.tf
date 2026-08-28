@@ -26,10 +26,6 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
 }
 
 
-# -------------------------
-# EKS Cluster
-# -------------------------
-
 resource "aws_eks_cluster" "main" {
   name = var.cluster_name
 
