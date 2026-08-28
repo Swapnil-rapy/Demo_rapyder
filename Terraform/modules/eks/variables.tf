@@ -17,3 +17,19 @@ variable "subnet_ids" {
   description = "Private subnet IDs for EKS"
   type        = list(string)
 }
+
+variable "vpc_cni_version" {
+  type = string
+}
+
+variable "coredns_version" {
+  type = string
+}
+
+variable "kube_proxy_version" {
+  type = string
+}
+
+variable "node_subnet_ids" {
+  type = list(string)
+}

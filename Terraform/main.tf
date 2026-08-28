@@ -25,8 +25,8 @@ module "vpc" {
   vpc_cidr             = each.value.cidr
   public_subnet_cidrs  = each.value.public_subnets
   private_subnet_cidrs = each.value.private_subnets
-  availability_zones = each.value.availability_zones
-  
+  availability_zones   = each.value.availability_zones
+
 }
 
 
@@ -40,6 +40,12 @@ module "eks" {
   vpc_id = module.vpc["sample"].vpc_id
 
   subnet_ids = module.vpc["sample"].private_subnet_ids
+
+  node_subnet_ids = module.vpc["sample"].private_subnet_ids
+
+  vpc_cni_version    = var.vpc_cni_version
+  coredns_version    = var.coredns_version
+  kube_proxy_version = var.kube_proxy_version
 
 }
 

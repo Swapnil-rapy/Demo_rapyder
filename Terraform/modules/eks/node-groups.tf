@@ -71,10 +71,11 @@ resource "aws_eks_node_group" "main" {
     max_size = 3
   }
 
+
   update_config {
     max_unavailable = 1
   }
-  
+
 
   labels = {
     environment = "sample"

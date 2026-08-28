@@ -47,9 +47,9 @@ variable "private_subnet_cidrs" {
 
 variable "vpcs" {
   type = map(object({
-    cidr            = string
-    public_subnets  = list(string)
-    private_subnets = list(string)
+    cidr               = string
+    public_subnets     = list(string)
+    private_subnets    = list(string)
     availability_zones = list(string)
   }))
 }
@@ -80,4 +80,14 @@ variable "ecr_repository_name" {
   default     = "sample-app"
 }
 
+variable "vpc_cni_version" {
+  type = string
+}
 
+variable "coredns_version" {
+  type = string
+}
+
+variable "kube_proxy_version" {
+  type = string
+}
